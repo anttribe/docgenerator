@@ -7,6 +7,7 @@ import com.anttribe.docgenerator.config.Copyright;
 import com.anttribe.docgenerator.config.OutputConfiguration;
 import com.anttribe.docgenerator.config.TemplateConfiguration;
 import com.anttribe.docgenerator.in.DataModel;
+import com.anttribe.docgenerator.out.FileType;
 import com.anttribe.docgenerator.out.Output;
 import com.anttribe.docgenerator.utils.naming.DatetimeNamingHandler;
 
@@ -22,7 +23,7 @@ public class DocGeneratorTest {
         Configuration configuration = Configuration.builder().copyright(Copyright.builder().build())
             .templateConfig(TemplateConfiguration.builder().templateFile(templateFilepath).build())
             .outputConfig(OutputConfiguration.builder().outputDirectory("/Testing/docgenerator/outputs")
-                .namingHandler(new DatetimeNamingHandler()).build())
+                .outputFileType(FileType.WORD).namingHandler(new DatetimeNamingHandler()).build())
             .build();
         System.out.println(configuration);
 

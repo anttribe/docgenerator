@@ -7,6 +7,7 @@ import java.io.Writer;
 
 import com.anttribe.docgenerator.config.Configuration;
 import com.anttribe.docgenerator.config.TemplateConfiguration;
+import com.anttribe.docgenerator.constants.Constants;
 import com.anttribe.docgenerator.engine.AbstractTemplateEngine;
 import com.anttribe.docgenerator.engine.TemplateEngineException;
 import com.anttribe.docgenerator.in.DataModel;
@@ -62,11 +63,6 @@ public class FreeMarkerTemplateEngine extends AbstractTemplateEngine {
      */
     class TemplateLoader {
 
-        /**
-         * 默认编码
-         */
-        private static final String DEFAULT_ENCODING = "UTF-8";
-
         private TemplateConfiguration templateConfiguration;
 
         public TemplateLoader(TemplateConfiguration templateConfiguration) {
@@ -87,7 +83,7 @@ public class FreeMarkerTemplateEngine extends AbstractTemplateEngine {
             // FreeMarker模板配置
             freemarker.template.Configuration freeMarkerConfiguration = new freemarker.template.Configuration(
                 freemarker.template.Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
-            freeMarkerConfiguration.setDefaultEncoding(DEFAULT_ENCODING);
+            freeMarkerConfiguration.setDefaultEncoding(Constants.DEFAULT_ENCODING);
             freeMarkerConfiguration.setAutoFlush(Boolean.TRUE);
             try {
                 // 加载模板目录
