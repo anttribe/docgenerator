@@ -58,10 +58,17 @@ public abstract class AbstractTemplateEngine implements TemplateEngine {
             String outputDirectory = outputConfiguration.getOutputDirectory();
             File outputDirectoryFile = new File(outputDirectory);
             mkdirOutputDirectory(outputDirectoryFile);
+
+            // 获取输出文件
             String outputFilePath = getOutputFilepath(outputDirectoryFile);
+            File outputFile = new File(outputFilePath);
+            if (null != outputConfiguration.getOutputFileType().getFileTypeHandler()) {
+                outputConfiguration.getOutputFileType().getFileTypeHandler().handle(outputFile);
+            }
+
             // 输出文件
             Output output = new Output();
-            output.setOutputFile(new File(outputFilePath));
+            output.setOutputFile(outputFile);
             return output;
         }
 

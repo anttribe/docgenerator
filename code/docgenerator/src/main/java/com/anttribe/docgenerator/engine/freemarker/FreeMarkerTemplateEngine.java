@@ -72,7 +72,7 @@ public class FreeMarkerTemplateEngine extends AbstractTemplateEngine {
         /**
          * 加载模板
          *
-         * @return
+         * @return Template
          */
         public Template loadTemplate() {
             File templateFile = null != templateConfiguration ? templateConfiguration.getTemplateFile() : null;
