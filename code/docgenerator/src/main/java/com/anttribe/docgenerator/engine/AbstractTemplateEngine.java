@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.anttribe.docgenerator.config.Configuration;
 import com.anttribe.docgenerator.config.OutputConfiguration;
+import com.anttribe.docgenerator.in.DataModel;
 import com.anttribe.docgenerator.out.Output;
 import com.anttribe.docgenerator.utils.naming.NamingHandler;
 
@@ -20,6 +21,59 @@ public abstract class AbstractTemplateEngine implements TemplateEngine {
 
     public AbstractTemplateEngine(Configuration configuration) {
         this.configuration = configuration;
+    }
+
+    @Override
+    public Output process(DataModel dataModel) {
+        // 校验模板文件
+        validateTemplateFile(this.configuration.getTemplateConfig().getTemplateFile());
+
+        // 创建输出
+        Output output = this.createOutput();
+        if (null != configuration.getOutputConfig().getOutputFileType().getFileTypeHandler()) {
+            // 输出预处理
+            configuration.getOutputConfig().getOutputFileType().getFileTypeHandler().preHandle(output);
+        }
+
+        processInternal(dataModel, output);
+
+        if (null != configuration.getOutputConfig().getOutputFileType().getFileTypeHandler()) {
+            // 输出后处理
+            configuration.getOutputConfig().getOutputFileType().getFileTypeHandler().postHandle(output);
+        }
+        return output;
+    }
+
+    /**
+     * 内部处理机制
+     *
+     * @param dataModel
+     *            数据模型
+     * @param output
+     *            输出
+     */
+    protected abstract void processInternal(DataModel dataModel, Output output);
+
+    /**
+     * 校验模板文件
+     *
+     * @param templateFile
+     * @return boolean
+     */
+    private boolean validateTemplateFile(File templateFile) {
+        if (null == templateFile) {
+            log.error("template file must not be null");
+            throw new TemplateEngineException("template file must not be null");
+        }
+        if (!templateFile.exists()) {
+            log.error("template file does not exist");
+            throw new TemplateEngineException("template file does not exist");
+        }
+        if (!templateFile.isFile()) {
+            log.error("template file parameter is invalid");
+            throw new TemplateEngineException("template file parameter invalid");
+        }
+        return Boolean.TRUE;
     }
 
     /**
@@ -51,24 +105,15 @@ public abstract class AbstractTemplateEngine implements TemplateEngine {
          * @return
          */
         public Output create() {
-            if (null == outputConfiguration) {
-                return null;
-            }
-
             String outputDirectory = outputConfiguration.getOutputDirectory();
             File outputDirectoryFile = new File(outputDirectory);
             mkdirOutputDirectory(outputDirectoryFile);
 
             // 获取输出文件
             String outputFilePath = getOutputFilepath(outputDirectoryFile);
-            File outputFile = new File(outputFilePath);
-            if (null != outputConfiguration.getOutputFileType().getFileTypeHandler()) {
-                outputConfiguration.getOutputFileType().getFileTypeHandler().handle(outputFile);
-            }
-
             // 输出文件
             Output output = new Output();
-            output.setOutputFile(outputFile);
+            output.setOutputFile(new File(outputFilePath));
             return output;
         }
 

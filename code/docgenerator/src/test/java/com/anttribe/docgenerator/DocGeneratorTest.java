@@ -23,7 +23,7 @@ public class DocGeneratorTest {
         Configuration configuration = Configuration.builder().copyright(Copyright.builder().build())
             .templateConfig(TemplateConfiguration.builder().templateFile(templateFilepath).build())
             .outputConfig(OutputConfiguration.builder().outputDirectory("/Testing/docgenerator/outputs")
-                .outputFileType(FileType.WORD).namingHandler(new DatetimeNamingHandler()).build())
+                .outputFileType(FileType.MAKEDOWN).namingHandler(new DatetimeNamingHandler()).build())
             .build();
         System.out.println(configuration);
 

@@ -29,7 +29,7 @@ public class FreeMarkerTemplateEngine extends AbstractTemplateEngine {
     }
 
     @Override
-    public Output process(DataModel dataModel) {
+    protected void processInternal(DataModel dataModel, Output output) {
         // 加载模板
         Template template = new TemplateLoader(this.configuration.getTemplateConfig()).loadTemplate();
         if (null == template) {
@@ -39,20 +39,16 @@ public class FreeMarkerTemplateEngine extends AbstractTemplateEngine {
 
         log.info("start generating document with dataModel[{}] and template[{}]", dataModel, template.getName());
         // 生成文档
-        Output output = this.createOutput();
-        if (null != output && null != output.getOutputFile()) {
-            try (Writer out = new FileWriter(output.getOutputFile())) {
-                // 模版 + 数据
-                template.process(dataModel.getModelMap(), out);
-                out.flush();
+        try (Writer out = new FileWriter(output.getOutputFile())) {
+            // 模版 + 数据
+            template.process(dataModel.getModelMap(), out);
+            out.flush();
 
-                log.info("end generating document with dataModel[{}] and template[{}]", dataModel, template.getName());
-            } catch (IOException | TemplateException e) {
-                log.error("process datamodel with template get error, cause: {}", e);
-                throw new TemplateEngineException("process datamodel with template get error", e);
-            }
+            log.info("end generating document with dataModel[{}] and template[{}]", dataModel, template.getName());
+        } catch (IOException | TemplateException e) {
+            log.error("process datamodel with template get error, cause: {}", e);
+            throw new TemplateEngineException("process datamodel with template get error", e);
         }
-        return output;
     }
 
     /**
@@ -75,11 +71,7 @@ public class FreeMarkerTemplateEngine extends AbstractTemplateEngine {
          * @return Template
          */
         public Template loadTemplate() {
-            File templateFile = null != templateConfiguration ? templateConfiguration.getTemplateFile() : null;
-            if (!validateTemplateFile(templateFile)) {
-                return null;
-            }
-
+            File templateFile = templateConfiguration.getTemplateFile();
             // FreeMarker模板配置
             freemarker.template.Configuration freeMarkerConfiguration = new freemarker.template.Configuration(
                 freemarker.template.Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
@@ -93,28 +85,6 @@ public class FreeMarkerTemplateEngine extends AbstractTemplateEngine {
                 log.error("failed to load template file, cause: {}", e);
                 throw new TemplateEngineException("failed to load template file", e);
             }
-        }
-
-        /**
-         * 校验模板文件
-         *
-         * @param templateFile
-         * @return boolean
-         */
-        private boolean validateTemplateFile(File templateFile) {
-            if (null == templateFile) {
-                log.error("template file must not be null");
-                throw new TemplateEngineException("template file must not be null");
-            }
-            if (!templateFile.exists()) {
-                log.error("template file does not exist");
-                throw new TemplateEngineException("template file does not exist");
-            }
-            if (!templateFile.isFile()) {
-                log.error("template file parameter is invalid");
-                throw new TemplateEngineException("template file parameter invalid");
-            }
-            return Boolean.TRUE;
         }
 
     }
