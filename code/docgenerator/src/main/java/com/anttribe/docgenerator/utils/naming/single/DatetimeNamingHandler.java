@@ -1,24 +1,25 @@
-package com.anttribe.docgenerator.utils.naming;
+package com.anttribe.docgenerator.utils.naming.single;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.anttribe.docgenerator.utils.naming.NamingHandler;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author zhaoyong
  * @date 2021/10/6 0006
  */
-public class DatetimeNamingHandler implements NamingHandler{
+public class DatetimeNamingHandler implements NamingHandler {
 
     /**
      * 默认时间格式化字符串
      */
-    private static final String DEFAULT_FORMAT_PATTERN = "yyyyMMddHHmmssSSS";
+    protected static final String DEFAULT_FORMAT_PATTERN = "yyyyMMddHHmmssSSS";
 
-    private String formatPattern;
+    protected String formatPattern;
 
-    public DatetimeNamingHandler(){
+    public DatetimeNamingHandler() {
         this(DEFAULT_FORMAT_PATTERN);
     }
 

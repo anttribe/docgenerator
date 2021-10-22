@@ -9,7 +9,8 @@ import com.anttribe.docgenerator.config.TemplateConfiguration;
 import com.anttribe.docgenerator.in.DataModel;
 import com.anttribe.docgenerator.out.FileType;
 import com.anttribe.docgenerator.out.Output;
-import com.anttribe.docgenerator.utils.naming.DatetimeNamingHandler;
+import com.anttribe.docgenerator.utils.naming.complex.DateFilePathNamingHandler;
+import com.anttribe.docgenerator.utils.naming.single.DatetimeNamingHandler;
 
 /**
  * @author zhaoyong
@@ -23,7 +24,8 @@ public class DocGeneratorTest {
         Configuration configuration = Configuration.builder().copyright(Copyright.builder().build())
             .templateConfig(TemplateConfiguration.builder().templateFile(templateFilepath).build())
             .outputConfig(OutputConfiguration.builder().outputDirectory("/Testing/docgenerator/outputs")
-                .outputFileType(FileType.MAKEDOWN).namingHandler(new DatetimeNamingHandler()).build())
+                .outputFileType(FileType.MAKEDOWN)
+                .namingHandler(new DateFilePathNamingHandler(new DatetimeNamingHandler())).build())
             .build();
         System.out.println(configuration);
 

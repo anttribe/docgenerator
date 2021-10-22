@@ -2,7 +2,7 @@ package com.anttribe.docgenerator.config;
 
 import com.anttribe.docgenerator.out.FileType;
 import com.anttribe.docgenerator.utils.naming.NamingHandler;
-import com.anttribe.docgenerator.utils.naming.UuidNamingHandler;
+import com.anttribe.docgenerator.utils.naming.single.UuidNamingHandler;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;

@@ -1,4 +1,6 @@
-package com.anttribe.docgenerator.utils.naming;
+package com.anttribe.docgenerator.utils.naming.single;
+
+import com.anttribe.docgenerator.utils.naming.NamingHandler;
 
 /**
  * @author zhaoyong

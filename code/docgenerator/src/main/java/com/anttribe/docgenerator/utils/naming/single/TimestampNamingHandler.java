@@ -1,4 +1,4 @@
-package com.anttribe.docgenerator.utils.naming;
+package com.anttribe.docgenerator.utils.naming.single;
 
 /**
  * @author zhaoyong
