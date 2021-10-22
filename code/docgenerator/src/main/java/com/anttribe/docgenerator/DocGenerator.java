@@ -21,8 +21,7 @@ public class DocGenerator {
 
     public DocGenerator(Configuration configuration) {
         if (null == configuration) {
-            log.warn("not setting configuration, may use the default");
-            configuration = Configuration.DEFAULT_CONFIGURATION;
+            throw new DocGeneratorException("configuration must not be null");
         }
         this.configuration = configuration;
     }
@@ -30,7 +29,8 @@ public class DocGenerator {
     /**
      * 根据DataModel数据生成文档
      *
-     * @param dataModel 模型数据
+     * @param dataModel
+     *            模型数据
      * @return Output输出
      */
     public Output generate(DataModel dataModel) {
@@ -48,8 +48,7 @@ public class DocGenerator {
 
         try {
             return templateEngine.process(dataModel);
-        }
-        catch (TemplateEngineException e) {
+        } catch (TemplateEngineException e) {
             throw new DocGeneratorException(e);
         }
     }

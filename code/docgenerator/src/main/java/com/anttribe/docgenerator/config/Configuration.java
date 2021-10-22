@@ -14,14 +14,10 @@ import lombok.ToString;
 public class Configuration {
 
     /**
-     * 默认配置
-     */
-    public static final Configuration DEFAULT_CONFIGURATION = Configuration.builder().build();
-
-    /**
      * 版本信息
      */
-    private Copyright copyright;
+    @Builder.Default
+    private Copyright copyright = Copyright.builder().build();
 
     /**
      * 模板配置
@@ -31,6 +27,7 @@ public class Configuration {
     /**
      * 输出配置
      */
-    private OutputConfiguration outputConfig;
+    @Builder.Default
+    private OutputConfiguration outputConfig = OutputConfiguration.builder().build();
 
 }

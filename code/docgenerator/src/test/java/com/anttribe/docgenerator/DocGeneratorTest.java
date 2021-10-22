@@ -34,4 +34,17 @@ public class DocGeneratorTest {
         System.out.println(output);
     }
 
+    @Test
+    public void testGenerateWithDefaultConfig() {
+        String templateFilepath = "/Testing/docgenerator/templates/freemarker/documentation_txt.ftl";
+        Configuration configuration = Configuration.builder()
+            .templateConfig(TemplateConfiguration.builder().templateFile(templateFilepath).build()).build();
+
+        DocGenerator generator = new DocGenerator(configuration);
+        DataModel dataModel = new DataModel();
+        dataModel.addObject("version", "1.0");
+        Output output = generator.generate(dataModel);
+        System.out.println(output);
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.anttribe.docgenerator.config;
 
+import org.apache.commons.lang3.SystemUtils;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -18,6 +20,7 @@ public class Copyright {
     /**
      * 作者
      */
-    private String author;
+    @Builder.Default
+    private String author = SystemUtils.USER_NAME;
 
 }
