@@ -23,4 +23,9 @@ public class Copyright {
     @Builder.Default
     private String author = SystemUtils.USER_NAME;
 
+    /**
+     * 版本信息
+     */
+    private String version;
+
 }

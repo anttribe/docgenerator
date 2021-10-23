@@ -11,4 +11,16 @@ public class Constants {
      */
     public static final String DEFAULT_ENCODING = "UTF-8";
 
+    /**
+     * 数据键
+     */
+    public class DataKey {
+
+        /**
+         * KEY_COPYRIGHT
+         */
+        public static final String KEY_COPYRIGHT = "copyright";
+
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.anttribe.docgenerator;
 
 import com.anttribe.docgenerator.config.Configuration;
+import com.anttribe.docgenerator.constants.Constants;
 import com.anttribe.docgenerator.engine.TemplateEngine;
 import com.anttribe.docgenerator.engine.TemplateEngineException;
 import com.anttribe.docgenerator.engine.TemplateEngineFactory;
@@ -38,6 +39,7 @@ public class DocGenerator {
             log.warn("dataModel is null, use the empty model");
             dataModel = DataModel.EMPTY;
         }
+        dataModel.addObject(Constants.DataKey.KEY_COPYRIGHT, this.configuration.getCopyright());
 
         TemplateEngine templateEngine = TemplateEngineFactory.me().getTemplateEngine(this.configuration);
         if (null == templateEngine) {
