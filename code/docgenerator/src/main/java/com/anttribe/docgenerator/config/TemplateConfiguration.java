@@ -1,12 +1,15 @@
 package com.anttribe.docgenerator.config;
 
-import com.anttribe.docgenerator.engine.TemplateEngineType;
-import com.anttribe.docgenerator.exception.DocGeneratorException;
-import lombok.Getter;
-import lombok.ToString;
+import java.io.File;
+import java.net.URL;
+
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
+import com.anttribe.docgenerator.engine.TemplateEngineType;
+import com.anttribe.docgenerator.exception.DocGeneratorException;
+
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * @author zhaoyong
@@ -79,11 +82,7 @@ public class TemplateConfiguration {
             }
 
             if (null == templateFile && !StringUtils.isEmpty(templateFilepath)) {
-                // 对文件路径进行处理
-                templateFilepath = templateFilepath.replace("\\", "/").replace("../", "").replace("./", "");
-                if (StringUtils.isEmpty(templateFilepath)) {
-                    throw new DocGeneratorException("invalid template file");
-                }
+                processTemplateFilePath();
                 templateFile = new File(templateFilepath);
             }
 
@@ -97,6 +96,30 @@ public class TemplateConfiguration {
             }
             if (!templateFile.isFile()) {
                 throw new DocGeneratorException("invalid template file, must not be directory");
+            }
+        }
+
+        /**
+         * 处理模板文件
+         *
+         * @return File
+         */
+        private void processTemplateFilePath() {
+            if (!StringUtils.isEmpty(templateFilepath)) {
+                // 对文件路径进行处理
+                templateFilepath = templateFilepath.replace("\\", "/").replace("../", "").replace("./", "");
+                if (StringUtils.isEmpty(templateFilepath)) {
+                    throw new DocGeneratorException("invalid template file path");
+                }
+
+                File tempTemplateFile =  new File(templateFilepath);
+                if(!tempTemplateFile.exists()){
+                    URL templateFileURL = this.getClass().getClassLoader().getResource(templateFilepath);
+                    if (null == templateFileURL) {
+                        throw new DocGeneratorException("invalid template file path");
+                    }
+                    templateFilepath = templateFileURL.getFile();
+                }
             }
         }
 
