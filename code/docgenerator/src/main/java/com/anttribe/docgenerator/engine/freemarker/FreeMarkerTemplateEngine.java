@@ -1,9 +1,8 @@
 package com.anttribe.docgenerator.engine.freemarker;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
+import java.io.StringWriter;
 
 import com.anttribe.docgenerator.config.Configuration;
 import com.anttribe.docgenerator.config.TemplateConfiguration;
@@ -38,12 +37,15 @@ public class FreeMarkerTemplateEngine extends AbstractTemplateEngine {
         }
 
         log.info("start generating document with dataModel[{}] and template[{}]", dataModel, template.getName());
+
+        StringWriter out = new StringWriter();
         // 生成文档
-        try (Writer out = new FileWriter(output.getOutputFile())) {
+        try {
             // 模版 + 数据
             template.process(dataModel.getModelMap(), out);
             out.flush();
 
+            output.setOutString(out.toString());
             log.info("end generating document with dataModel[{}] and template[{}]", dataModel, template.getName());
         } catch (IOException | TemplateException e) {
             log.error("process datamodel with template get error, cause: {}", e);

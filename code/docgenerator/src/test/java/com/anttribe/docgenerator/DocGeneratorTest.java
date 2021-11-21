@@ -66,4 +66,21 @@ public class DocGeneratorTest {
         System.out.println(output);
     }
 
+    @Test
+    public void testGenerateWithPdfFile() {
+        String templateFilepath = "templates/freemarker/documentation_pdf.ftl";
+        Configuration configuration = Configuration.builder()
+            .templateConfig(TemplateConfiguration.builder().templateFile(templateFilepath).build())
+            .outputConfig(OutputConfiguration.builder().outputDirectory("/Testing/docgenerator/outputs")
+                .outputFileType(FileType.PDF).namingHandler(new DateFilePathNamingHandler(new DatetimeNamingHandler()))
+                .build())
+            .build();
+
+        DocGenerator generator = new DocGenerator(configuration);
+        DataModel dataModel = new DataModel();
+        dataModel.addObject("version", "1.0");
+        Output output = generator.generate(dataModel);
+        System.out.println(output);
+    }
+
 }

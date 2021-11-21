@@ -4,8 +4,10 @@ import com.anttribe.docgenerator.out.handler.DefaultOutputFileHandler;
 import com.anttribe.docgenerator.out.handler.HtmlOutputFileHandler;
 import com.anttribe.docgenerator.out.handler.MakedownOutputFileHandler;
 import com.anttribe.docgenerator.out.handler.OutputFileHandler;
+import com.anttribe.docgenerator.out.handler.PdfOutputFileHandler;
 import com.anttribe.docgenerator.out.handler.WordOutputFileHandler;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -13,16 +15,19 @@ import lombok.Getter;
  * @date 2021/10/6 0006
  */
 @Getter
+@AllArgsConstructor
 public enum FileType {
 
     /** 生成HTML文件 */
-    HTML(".html", new HtmlOutputFileHandler()),
+    HTML(".html", HtmlOutputFileHandler.class),
     /** 生成TXT文件 */
-    TXT(".txt"),
+    TXT(".txt", DefaultOutputFileHandler.class),
     /** 生成MAKEDOWN文件 */
-    MAKEDOWN(".md", new MakedownOutputFileHandler()),
+    MAKEDOWN(".md", MakedownOutputFileHandler.class),
     /** 生成WORD文件 */
-    WORD(".docx", new WordOutputFileHandler());
+    WORD(".docx", WordOutputFileHandler.class),
+    /** 生成WORD文件 */
+    PDF(".pdf", PdfOutputFileHandler.class);
 
     /**
      * 文件后缀
@@ -30,17 +35,8 @@ public enum FileType {
     private String fileSuffix;
 
     /**
-     * 文件处理器
+     * 输出文件处理类
      */
-    private OutputFileHandler fileTypeHandler;
-
-    private FileType(String fileSuffix) {
-        this(fileSuffix, new DefaultOutputFileHandler());
-    }
-
-    private FileType(String fileSuffix, OutputFileHandler outputFileHandler) {
-        this.fileSuffix = fileSuffix;
-        this.fileTypeHandler = fileTypeHandler;
-    }
+    private Class<? extends OutputFileHandler> outputFileHandlerClass;
 
 }

@@ -1,5 +1,10 @@
 package com.anttribe.docgenerator.out.handler;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
+import com.anttribe.docgenerator.exception.DocGeneratorException;
 import com.anttribe.docgenerator.out.Output;
 
 /**
@@ -15,6 +20,6 @@ public class DefaultOutputFileHandler extends AbstractOutputFileHandler {
 
     @Override
     public void postHandle(Output output) {
-        // do something
+        super.postHandle(output);
     }
 }

@@ -1,10 +1,10 @@
 package com.anttribe.docgenerator.out;
 
+import java.io.File;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.io.File;
 
 /**
  * @author zhaoyong
@@ -19,5 +19,11 @@ public class Output {
      * 输出文件
      */
     private File outputFile;
+
+    /**
+     * 输出字符串
+     */
+    @ToString.Exclude
+    private String outString;
 
 }

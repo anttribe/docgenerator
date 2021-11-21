@@ -5,7 +5,10 @@ import java.io.File;
 import com.anttribe.docgenerator.config.Configuration;
 import com.anttribe.docgenerator.config.OutputConfiguration;
 import com.anttribe.docgenerator.in.DataModel;
+import com.anttribe.docgenerator.out.FileType;
 import com.anttribe.docgenerator.out.Output;
+import com.anttribe.docgenerator.out.handler.OutputFileHandler;
+import com.anttribe.docgenerator.out.handler.OutputFileHandlerFactory;
 import com.anttribe.docgenerator.utils.naming.NamingHandler;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,16 +33,18 @@ public abstract class AbstractTemplateEngine implements TemplateEngine {
 
         // 创建输出
         Output output = this.createOutput();
-        if (null != configuration.getOutputConfig().getOutputFileType().getFileTypeHandler()) {
+        FileType outputFileType = configuration.getOutputConfig().getOutputFileType();
+        OutputFileHandler outputFileHandler = OutputFileHandlerFactory.me().getOutputFileHandler(outputFileType);
+        if (null != outputFileHandler) {
             // 输出预处理
-            configuration.getOutputConfig().getOutputFileType().getFileTypeHandler().preHandle(output);
+            outputFileHandler.preHandle(output);
         }
 
         processInternal(dataModel, output);
 
-        if (null != configuration.getOutputConfig().getOutputFileType().getFileTypeHandler()) {
+        if (null != outputFileHandler) {
             // 输出后处理
-            configuration.getOutputConfig().getOutputFileType().getFileTypeHandler().postHandle(output);
+            outputFileHandler.postHandle(output);
         }
         return output;
     }

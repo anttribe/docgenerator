@@ -12,6 +12,8 @@ public class MakedownOutputFileHandler extends AbstractOutputFileHandler {
     public void preHandle(Output output) {}
 
     @Override
-    public void postHandle(Output output) {}
+    public void postHandle(Output output) {
+        super.postHandle(output);
+    }
 
 }
