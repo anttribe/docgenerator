@@ -87,6 +87,11 @@
             <artifactId>itext-asian</artifactId>
             <version>${itext.asian.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.itextpdf.tool</groupId>
+            <artifactId>xmlworker</artifactId>
+            <version>${itextpdf.version}</version>
+        </dependency>
 
         <!-- bouncycastle -->
         <dependency>

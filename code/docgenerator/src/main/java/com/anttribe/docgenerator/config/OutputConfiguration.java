@@ -1,6 +1,7 @@
 package com.anttribe.docgenerator.config;
 
 import com.anttribe.docgenerator.out.FileType;
+import com.anttribe.docgenerator.out.handler.OutputFileHandler;
 import com.anttribe.docgenerator.utils.naming.NamingHandler;
 import com.anttribe.docgenerator.utils.naming.single.UuidNamingHandler;
 
@@ -27,7 +28,12 @@ public class OutputConfiguration {
      * 输出文件类型
      */
     @Builder.Default
-    private FileType outputFileType = FileType.MAKEDOWN;
+    private FileType outputFileType = FileType.TXT;
+
+    /**
+     * 输出文件处理器
+     */
+    private Class<? extends OutputFileHandler> outputFileHandlerClass;
 
     /**
      * 输出文件命名处理类

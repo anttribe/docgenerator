@@ -1,25 +1,50 @@
-<#--
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"></meta>
+    <title>文档标题</title>
+    <style>
+        body {
+            font-family:simhei;
+            text-align:center;
+        }
+        table
+        {
+            border-collapse:collapse;
+            border-spacing: 0;
+            width: 100%;
+        }
 
-    screw-core - 简洁好用的数据库表结构文档生成工具
-    Copyright © 2020 SanLi (qinggang.zuo@gmail.com)
+        tr {
+            height: 50px;
+        }
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+        .content td {
+            border: 1px solid black;
+        }
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
--->
-# ${title!'数据库设计文档'}
-
-${version!''}
-<#if (database)??>
-    **数据库产品：** ${database.productName!''}
+    </style>
+</head>
+<body>
+<h1>
+    文档生成器
+</h1>
+<#if (version)??>
+    <div class="">${version!''}</div>
 </#if>
+<table borde=0>
+    <tr>
+        <td style="width: 100px;">
+            TO:财务部
+        </td>
+        <td style="width: 80%;">
+        </td>
+        <td style="width: 80px;">
+            日期：
+        </td>
+        <td style="width: 120px;">
+        </td>
+    </tr>
+</table>
+</body>
+</html>

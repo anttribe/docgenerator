@@ -34,7 +34,8 @@ public abstract class AbstractTemplateEngine implements TemplateEngine {
         // 创建输出
         Output output = this.createOutput();
         FileType outputFileType = configuration.getOutputConfig().getOutputFileType();
-        OutputFileHandler outputFileHandler = OutputFileHandlerFactory.me().getOutputFileHandler(outputFileType);
+        OutputFileHandler outputFileHandler =
+            OutputFileHandlerFactory.me().getOutputFileHandler(configuration.getOutputConfig(), outputFileType);
         if (null != outputFileHandler) {
             // 输出预处理
             outputFileHandler.preHandle(output);
