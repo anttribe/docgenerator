@@ -1,6 +1,7 @@
 package com.anttribe.docgenerator.config;
 
-import com.anttribe.docgenerator.out.FileType;
+import com.anttribe.docgenerator.out.OutputFileType;
+import com.anttribe.docgenerator.out.SupportedOutputFileType;
 import com.anttribe.docgenerator.out.handler.OutputFileHandler;
 import com.anttribe.docgenerator.utils.naming.NamingHandler;
 import com.anttribe.docgenerator.utils.naming.single.UuidNamingHandler;
@@ -28,7 +29,7 @@ public class OutputConfiguration {
      * 输出文件类型
      */
     @Builder.Default
-    private FileType outputFileType = FileType.TXT;
+    private OutputFileType outputFileType = SupportedOutputFileType.TXT;
 
     /**
      * 输出文件处理器

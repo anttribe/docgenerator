@@ -5,7 +5,8 @@ import java.io.File;
 import com.anttribe.docgenerator.config.Configuration;
 import com.anttribe.docgenerator.config.OutputConfiguration;
 import com.anttribe.docgenerator.in.DataModel;
-import com.anttribe.docgenerator.out.FileType;
+import com.anttribe.docgenerator.out.OutputFileType;
+import com.anttribe.docgenerator.out.SupportedOutputFileType;
 import com.anttribe.docgenerator.out.Output;
 import com.anttribe.docgenerator.out.handler.OutputFileHandler;
 import com.anttribe.docgenerator.out.handler.OutputFileHandlerFactory;
@@ -33,7 +34,7 @@ public abstract class AbstractTemplateEngine implements TemplateEngine {
 
         // 创建输出
         Output output = this.createOutput();
-        FileType outputFileType = configuration.getOutputConfig().getOutputFileType();
+        OutputFileType outputFileType = configuration.getOutputConfig().getOutputFileType();
         OutputFileHandler outputFileHandler =
             OutputFileHandlerFactory.me().getOutputFileHandler(configuration.getOutputConfig(), outputFileType);
         if (null != outputFileHandler) {

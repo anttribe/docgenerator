@@ -2,7 +2,7 @@ package com.anttribe.docgenerator.out.handler;
 
 import com.anttribe.docgenerator.config.OutputConfiguration;
 import com.anttribe.docgenerator.exception.DocGeneratorException;
-import com.anttribe.docgenerator.out.FileType;
+import com.anttribe.docgenerator.out.OutputFileType;
 
 /**
  * @author zhaoyong
@@ -30,14 +30,14 @@ public class OutputFileHandlerFactory {
      *
      * @param outputConfig
      *            OutputConfiguration
-     * @param fileType
-     *            FileType
+     * @param outputFileType
+     *            OutputFileType
      * @return OutputFileHandler
      */
-    public OutputFileHandler getOutputFileHandler(OutputConfiguration outputConfig, FileType fileType) {
+    public OutputFileHandler getOutputFileHandler(OutputConfiguration outputConfig, OutputFileType outputFileType) {
         Class<? extends OutputFileHandler> outputFileHandlerClass = outputConfig.getOutputFileHandlerClass();
-        if (null == outputFileHandlerClass && null != fileType) {
-            outputFileHandlerClass = fileType.getOutputFileHandlerClass();
+        if (null == outputFileHandlerClass && null != outputFileType) {
+            outputFileHandlerClass = outputFileType.getOutputFileHandlerClass();
         }
 
         if (null == outputFileHandlerClass) {

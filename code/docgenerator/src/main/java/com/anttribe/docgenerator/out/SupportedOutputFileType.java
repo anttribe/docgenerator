@@ -16,18 +16,20 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum FileType {
+public enum SupportedOutputFileType implements OutputFileType {
 
-    /** 生成HTML文件 */
-    HTML(".html", HtmlOutputFileHandler.class),
     /** 生成TXT文件 */
     TXT(".txt", DefaultOutputFileHandler.class),
     /** 生成MAKEDOWN文件 */
     MAKEDOWN(".md", MakedownOutputFileHandler.class),
-    /** 生成WORD文件 */
+    /** 生成HTML文件 */
+    HTML(".html", HtmlOutputFileHandler.class),
+    /** 生成WORD docx文件 */
     WORD(".docx", WordOutputFileHandler.class),
-    /** 生成WORD文件 */
-    PDF(".pdf", PdfOutputFileHandler.class);
+    /** 生成pdf文件 */
+    PDF(".pdf", PdfOutputFileHandler.class),
+    /** java */
+    JAVA(".java", DefaultOutputFileHandler.class);
 
     /**
      * 文件后缀

@@ -7,7 +7,7 @@ import com.anttribe.docgenerator.config.Copyright;
 import com.anttribe.docgenerator.config.OutputConfiguration;
 import com.anttribe.docgenerator.config.TemplateConfiguration;
 import com.anttribe.docgenerator.in.DataModel;
-import com.anttribe.docgenerator.out.FileType;
+import com.anttribe.docgenerator.out.SupportedOutputFileType;
 import com.anttribe.docgenerator.out.Output;
 import com.anttribe.docgenerator.utils.naming.complex.DateFilePathNamingHandler;
 import com.anttribe.docgenerator.utils.naming.single.DatetimeNamingHandler;
@@ -25,7 +25,7 @@ public class DocGeneratorTest {
         Configuration configuration = Configuration.builder().copyright(Copyright.builder().build())
             .templateConfig(TemplateConfiguration.builder().templateFile(templateFilepath).build())
             .outputConfig(OutputConfiguration.builder().outputDirectory("/Testing/docgenerator/outputs")
-                .outputFileType(FileType.MAKEDOWN)
+                .outputFileType(SupportedOutputFileType.MAKEDOWN)
                 .namingHandler(new DateFilePathNamingHandler(new DatetimeNamingHandler())).build())
             .build();
         System.out.println(configuration);
@@ -56,7 +56,7 @@ public class DocGeneratorTest {
         Configuration configuration = Configuration.builder()
             .templateConfig(TemplateConfiguration.builder().templateFile(templateFilepath).build())
             .outputConfig(OutputConfiguration.builder().outputDirectory("/Testing/docgenerator/outputs")
-                .outputFileType(FileType.MAKEDOWN).namingHandler(new DesignatedNamingHandler("docgenerator")).build())
+                .outputFileType(SupportedOutputFileType.MAKEDOWN).namingHandler(new DesignatedNamingHandler("docgenerator")).build())
             .build();
 
         DocGenerator generator = new DocGenerator(configuration);
@@ -68,11 +68,11 @@ public class DocGeneratorTest {
 
     @Test
     public void testGenerateWithPdfFile() {
-        String templateFilepath = "templates/freemarker/documentation_pdf.ftl";
+        String templateFilepath = "templates/freemarker/documentation_resume_pdf.ftl";
         Configuration configuration = Configuration.builder()
             .templateConfig(TemplateConfiguration.builder().templateFile(templateFilepath).build())
             .outputConfig(OutputConfiguration.builder().outputDirectory("/Testing/docgenerator/outputs")
-                .outputFileType(FileType.PDF).namingHandler(new DateFilePathNamingHandler(new DatetimeNamingHandler()))
+                .outputFileType(SupportedOutputFileType.PDF).namingHandler(new DateFilePathNamingHandler(new DatetimeNamingHandler()))
                 .build())
             .build();
 
