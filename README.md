@@ -18,15 +18,6 @@
   ![image-20211129235847371](README.assets/image-20211129235847371.png)
 
 
-
-<p align="center">
-   <img alt="word" src="">
-</p>
-
 + **pdf**
 
   ![image-20211129235926730](README.assets/image-20211129235926730.png)
-
-<p align="center">
-   <img alt="markdwon" src="">
-</p>
