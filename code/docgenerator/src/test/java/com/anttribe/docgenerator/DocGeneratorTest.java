@@ -68,7 +68,7 @@ public class DocGeneratorTest {
 
     @Test
     public void testGenerateWithPdfFile() {
-        String templateFilepath = "templates/freemarker/documentation_resume_pdf.ftl";
+        String templateFilepath = "templates/freemarker/resume/documentation_resume_pdf.ftl";
         Configuration configuration = Configuration.builder()
             .templateConfig(TemplateConfiguration.builder().templateFile(templateFilepath).build())
             .outputConfig(OutputConfiguration.builder().outputDirectory("/Testing/docgenerator/outputs")
