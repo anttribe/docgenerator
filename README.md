@@ -1,37 +1,32 @@
 # docgenerator - 文档生成工具
 
-#### 介绍
-文档生成工具 模版 + 数据 = 输出
-
-#### 软件架构
-软件架构说明
+#### 简介
+本质：模版 + 数据 = 输出
 
 
-#### 安装教程
+#### 文档生成支持
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+- [x] html
+- [x] pdf
+- [ ] word
+- [ ] excel 
 
-#### 使用说明
+#### 文档截图
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
++ **html**
 
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+  ![image-20211129235847371](README.assets/image-20211129235847371.png)
 
 
-#### 特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+<p align="center">
+   <img alt="word" src="">
+</p>
+
++ **pdf**
+
+  ![image-20211129235926730](README.assets/image-20211129235926730.png)
+
+<p align="center">
+   <img alt="markdwon" src="">
+</p>
